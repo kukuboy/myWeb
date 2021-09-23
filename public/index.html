@@ -1,0 +1,91 @@
+<!--
+ * @Description: 主页面
+ * @Author: 水印红枫
+ * @Editor: 水印红枫
+ * @Date: 2021-04-30 11:04:40
+ * @LastEditors: 水印红枫
+-->
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+  <link rel="icon" href="<%= BASE_URL %>static/favicon.ico">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+      Please enable it to continue.</strong>
+  </noscript>
+  <div id="app">
+    <!-- built files will be auto injected -->
+    <div id="loading">
+      <img id="fly" src="<%= BASE_URL %>static/xiaoyuan@2x.png" alt="..." />
+      <p id="text">正在加载中...</p>
+    </div>
+    <style>
+      #app {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      #fly {
+        width: 13vw;
+        display: block;
+        margin: 20vh auto 10px;
+        animation: fly 2.5s linear 0s infinite normal;
+      }
+
+      #text {
+        font-size: 3vw;
+        text-align: center;
+      }
+
+      @keyframes fly {
+        0% {
+          transform: translateY(0);
+        }
+
+        25% {
+          transform: translateY(-40px);
+        }
+
+        50% {
+          transform: translateY(0);
+        }
+
+        60% {
+          transform: translateY(-10px);
+        }
+
+        70% {
+          transform: translateY(0);
+        }
+
+        80% {
+          transform: translateY(-10px);
+        }
+
+        90% {
+          transform: translateY(0);
+        }
+
+        100% {
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </div>
+</body>
+
+</html>

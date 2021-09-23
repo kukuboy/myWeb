@@ -1,0 +1,239 @@
+/*
+ * @Description: 共用函数
+ * @Author: 水印红枫
+ * @Editor: 水印红枫
+ * @Date: 2021-05-12 14:12:08
+ * @LastEditors: 水印红枫
+ */
+// 模糊化处理
+.filterBlur {
+  filter: blur(10px);
+  -webkit-filter: blur(10px);
+  pointer-events: none;
+}
+
+/*-----全局样式结束-------*/
+/*--------盒模型兼容开始-------*/
+.flex {
+  // display: box;
+  /*Android 4.4*/
+  display: -webkit-box;
+  /*iOS 6-, Safari 3.1-6*/
+  display: -moz-box;
+  /*Firefox 19*/
+  display: -ms-flexbox;
+  /*IE 10*/
+  display: -webkit-flex;
+  /*Chrome*/
+  display: flex;
+  /*Opera 12.1, Firefox 20+*/
+}
+
+/*主轴竖直*/
+.flex_column {
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  -o-flex-direction: column;
+  flex-direction: column;
+}
+
+// 换行
+.flex_wrap {
+  -webkit-box-lines: multiple;
+  -webkit-flex-flow: wrap;
+  -moz-flex-flow: wrap;
+  -ms-flex-flow: wrap;
+  -o-flex-flow: wrap;
+  flex-flow: wrap;
+}
+
+/*元素两端排列*/
+.flex_jus_between {
+  -webkit-box-pack: space-between;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -o-justify-content: space-between;
+  justify-content: space-between;
+}
+
+/*元素两端间距排列*/
+.flex_jus_around {
+  -webkit-box-pack: space-around;
+  -webkit-justify-content: space-around;
+  -moz-justify-content: space-around;
+  -ms-justify-content: space-around;
+  -o-justify-content: space-around;
+  justify-content: space-around;
+}
+
+/*元素两端间距排列*/
+.flex_jus_center {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+}
+
+/*元素竖直方向居中*/
+.flex_ali_i_center {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+}
+
+/*多行元素竖直方向居中*/
+.flex_ali_c_center {
+  -webkit-box-align: center;
+  -webkit-align-content: center;
+  -moz-align-content: center;
+  -ms-align-content: center;
+  -o-align-content: center;
+  align-content: center;
+}
+
+
+.filter10 {
+  position: relative;
+
+  * {
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+    pointer-events: none;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 20%;
+    top: 40%;
+    width: 30%;
+    height: 2px;
+    border-radius: 1px;
+    background-color: #e83030;
+    animation: move 1s linear 0s infinite normal;
+    -webkit-animation: move 1s linear 0s infinite normal;
+  }
+
+  @keyframes move {
+    0% {
+      left: 20%;
+      width: 0;
+    }
+
+    25% {
+      left: 20%;
+      width: 30%;
+    }
+
+    50% {
+      left: 50%;
+      width: 30%;
+    }
+
+    75% {
+      left: 80%;
+      width: 0%;
+    }
+
+    100% {
+      left: 80%;
+      width: 0%;
+    }
+  }
+
+  @-webkit-keyframes move {
+    0% {
+      left: 20%;
+      width: 0;
+    }
+
+    25% {
+      left: 20%;
+      width: 30%;
+    }
+
+    50% {
+      left: 50%;
+      width: 30%;
+    }
+
+    75% {
+      left: 80%;
+      width: 0%;
+    }
+
+    100% {
+      left: 80%;
+      width: 0%;
+    }
+  }
+
+  &.filterFail::after {
+    font-size: 0.3rem;
+    line-height: 0.6rem;
+    color: #FFFFFF;
+    content: "点击重试";
+    position: absolute;
+    left: 30%;
+    top: 40%;
+    height: 0.6rem;
+    width: 40%;
+    border-radius: 0.3rem;
+    box-shadow: 0 5px 20px #000000;
+    animation: none;
+  }
+}
+
+.viewFilter {
+  animation: viewFilterA 0.5s linear 0s 1 normal forwards;
+}
+
+@keyframes viewFilterA {
+  from {
+    filter: blur(20px);
+  }
+
+  to {
+    filter: blur(8px);
+  }
+}
+
+// 通用样式
+.button_scale {
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+.width100 {
+  width: 100%;
+  display: block;
+}
+
+@-webkit-keyframes scale1_09 {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(0.9);
+  }
+}
+
+@keyframes scale1_09 {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(0.9);
+  }
+}
