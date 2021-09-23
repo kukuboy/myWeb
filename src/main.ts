@@ -14,7 +14,6 @@ import { Store } from 'vuex'
 import { default as http, Api } from "@/request"
 import { default as dialog, Dialog } from "@/util/dialog"
 import { default as store, key, AllStateType } from '@/store'
-import { default as sensors, Sensors } from '@/util/sensors'
 
 
 import { addVConsole, getQueryVariable, preloadImg } from "@/util/myUtil";
@@ -26,7 +25,6 @@ declare module '@vue/runtime-core' {
         $store: Store<AllStateType>
         $http: Api
         $dialog: Dialog
-        $sensors: Sensors
     }
 }
 
@@ -37,16 +35,12 @@ app.config.errorHandler = http.errorHandler
 
 app.use(http)
 app.use(dialog)
-app.use(sensors)
 app.use(store, key)
 app.use(router)
 
 
 // 预加载图片的数组
-const imgData = [
-    require("@/assets/images/chcj-images-1@2x.jpg"),
-    require("@/assets/images/cxjh-images-1@2x.jpg"),
-]
+const imgData: string[] = []
 preloadImg(imgData)
 // 根据参数增加vconsole
 if (getQueryVariable("VConsole") !== "") {

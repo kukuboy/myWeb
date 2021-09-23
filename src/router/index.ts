@@ -9,7 +9,6 @@
 import { createRouter, createWebHistory, RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
 import routes from './router';
 import store, { AllMutationsType } from "@/store"
-import sensors from "@/util/sensors"
 
 const update_state: AllMutationsType["update_state"] = obj => store.commit("update_state", obj)
 
@@ -22,22 +21,9 @@ const router = createRouter({
 
 // 跳转之前
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
-    // const token = getToken()
-    if (
-        process.env.VUE_APP_ACTIVITYEND === "true" &&
-        to.name !== "activityEnd" &&
-        new Date().getTime() > process.env.VUE_APP_ACTIVITYENDTIME &&
-        process.env.VUE_APP_ACTIVITYEND
-    ) {
-        next({
-            name: "activityEnd"
-        });
-    } else {
-        if (!from.name) { update_state({ startPage: to }); }
-        update_state({ fromPage: from, currentPage: to, bodyColor: String(to.meta.bodyColor) || "#e83030", scrollBottom: false });
-        sensors.trackView();
-        next();
-    }
+    if (!from.name) { update_state({ startPage: to }); }
+    update_state({ fromPage: from, currentPage: to, bodyColor: String(to.meta.bodyColor) || "#e83030", scrollBottom: false });
+    next();
 });
 
 

@@ -23,7 +23,6 @@
 import { Vue, Options } from "vue-class-component";
 import { mapGetters, mapMutations } from "vuex";
 import { AllStateType, AllMutationsType } from "@/store";
-import { a_login } from "./util/activity";
 import { preloadImg } from "./util/myUtil";
 
 @Options({
@@ -45,7 +44,6 @@ export default class App extends Vue {
   }
   created() {
     this.init();
-    a_login("fetch");
   }
   mounted() {
     this.adjustRem();
@@ -122,7 +120,6 @@ export default class App extends Vue {
     if (clientHeight + scrollTop + 30 >= scrollHeight) {
       if (!this.scrollBottom) {
         this.update_state({ scrollBottom: true });
-        this.$sensors.trackSlide("滑动到底部");
         console.log("滑动到底部");
       }
     } else {

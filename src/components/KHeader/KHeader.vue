@@ -88,7 +88,6 @@ export default class KHeader extends Vue.with(Props) {
     } else {
       a_share.share().then(res => {
         if (res) {
-          this.$sensors.trackShare();
         }
       });
     }

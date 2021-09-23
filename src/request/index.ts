@@ -11,7 +11,6 @@ import qs from 'qs';
 import Dialog from "@/util/dialog";
 import store from "@/store";
 import { getQueryVariable } from "@/util/myUtil";
-import { a_login } from "@/util/activity";
 // import '../common/js/mock/mock'
 
 // 页面接口
@@ -25,9 +24,8 @@ export interface ApiResponse {
 }
 
 export interface BaseApi {
-  install(app: App): void,
+  install(app: App): void
   errorHandler(err: unknown): void
-  savePointData(source: number, type: number, bagId?: number, taskId?: number): Promise<boolean>
 }
 // 页面声明
 export interface Api extends BaseApi{
@@ -130,48 +128,5 @@ export default {
   // TODO：错误接口捕捉
   errorHandler(err: unknown) {
     console.log("捕捉到错误:", err, "\n设备号：", store.state.deviceId, "\n账号：", store.state.loginSign);
-  },
-  // TODO: 数据埋点
-  savePointData(source: number, type: number) {
-    return new Promise<boolean>(resolve => {
-      const toSave = () => {
-        let channel: string | number =
-          getQueryVariable("channel") || sessionStorage.getItem("channel") || "0";
-        sessionStorage.setItem("channel", channel);
-        channel = Number(channel)
-        const sign = store.state.loginSign;
-        const deviceId = store.state.deviceId;
-        interface ParmasType {
-          sign: string
-          deviceId: string
-          channel: number
-          type: number
-          source: number
-          openId?: string
-        }
-        const params: ParmasType = { sign, deviceId, channel, type, source };
-        const openId = getQueryVariable("openid");
-        if (openId) {
-          params.openId = openId
-        }
-        httpA({
-          url: "/monopoly/h5/point/savePointData",
-          params,
-          method: "POST"
-        })
-          .then(() => {
-            resolve(true);
-          })
-          .catch(e => {
-            resolve(false);
-            console.log("埋点调用出错", e);
-          });
-      };
-      if (!store.state.deviceId) {
-        a_login("fetch").then(() => {
-          toSave();
-        });
-      } else { toSave(); }
-    });
-  },
+  }
 } as Api;
